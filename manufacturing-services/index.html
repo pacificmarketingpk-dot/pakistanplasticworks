@@ -50,24 +50,41 @@ nav.mainnav .dropdown a:hover{background:var(--bg-alt);color:var(--accent);}
 .has-drop-row{display:flex;align-items:center;}
 .submenu-toggle{display:none;background:none;border:none;color:inherit;cursor:pointer;padding:4px 6px;}
 .submenu-toggle .chevron{display:inline-block;font-size:12px;transition:transform .18s ease;}
-.nav-toggle{display:none;background:none;border:1px solid #4A443C;border-radius:6px;padding:8px 10px;cursor:pointer;}
+.nav-toggle{display:none;background:none;border:1px solid #4A443C;border-radius:6px;padding:10px 12px;cursor:pointer;}
 .nav-toggle span{display:block;width:20px;height:2px;background:#F5F2EC;margin:4px 0;}
-.nav-close{display:none;position:fixed;top:20px;right:20px;z-index:60;background:none;border:1px solid #4A443C;border-radius:6px;color:#F5F2EC;width:40px;height:40px;font-size:20px;cursor:pointer;}
+.nav-close{display:none;position:fixed;top:20px;right:20px;z-index:60;background:none;border:1px solid #4A443C;border-radius:6px;color:#F5F2EC;width:44px;height:44px;font-size:20px;cursor:pointer;}
+.mobile-menu-cta{display:none;}
+.ppw-nav-link.active{color:var(--accent);}
+html.nav-locked,html.nav-locked body{overflow:hidden;height:100%;}
 @media (max-width:900px){
-  nav.mainnav{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);flex-direction:column;gap:0;padding:88px 24px 24px;overflow-y:auto;z-index:50;}
-  header.site.nav-open nav.mainnav{display:flex;}
-  nav.mainnav .ppw-nav-link{display:block;padding:14px 0;border-bottom:1px solid #3A332B;font-size:16px;}
-  nav.mainnav .has-drop-row{border-bottom:1px solid #3A332B;}
-  nav.mainnav .has-drop-row .ppw-nav-link{flex:1;border-bottom:none;}
-  nav.mainnav .has-drop .dropdown{display:none;position:static;box-shadow:none;border:none;background:none;padding:0 0 10px 14px;margin-top:0;}
+  nav.mainnav{display:flex;position:fixed;top:0;left:0;right:0;bottom:0;background:var(--dark);flex-direction:column;gap:0;padding:88px 24px 32px;overflow-y:auto;z-index:50;
+    transform:translateX(100%);opacity:0;visibility:hidden;pointer-events:none;
+    transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .22s ease,visibility 0s linear .3s;}
+  header.site.nav-open nav.mainnav{transform:translateX(0);opacity:1;visibility:visible;pointer-events:auto;transition:transform .3s cubic-bezier(.4,0,.2,1),opacity .22s ease;}
+  nav.mainnav .ppw-nav-link{display:block;padding:14px 16px;border-radius:12px;font-size:16px;margin-bottom:4px;transition:background .15s ease;}
+  nav.mainnav .ppw-nav-link:active{background:#2A251F;}
+  nav.mainnav .ppw-nav-link.active{background:var(--accent);color:#fff;font-weight:600;}
+  nav.mainnav .has-drop-row{border-radius:12px;margin-bottom:4px;}
+  nav.mainnav .has-drop-row .ppw-nav-link{flex:1;margin-bottom:0;padding-right:4px;}
+  nav.mainnav .has-drop-row.active{background:var(--accent);}
+  nav.mainnav .has-drop-row.active .ppw-nav-link{color:#fff;font-weight:600;background:none;}
+  nav.mainnav .has-drop-row.active .submenu-toggle{color:#fff;}
+  nav.mainnav .has-drop .dropdown{display:none;position:static;box-shadow:none;border:none;background:none;padding:2px 0 14px 18px;margin-top:0;}
   nav.mainnav .has-drop.open .dropdown{display:block;}
-  nav.mainnav .has-drop .dropdown a{color:#D9D2C8;padding:10px 0;border-bottom:1px solid #2A2520;}
-  .submenu-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;}
+  nav.mainnav .has-drop .dropdown a{color:#D9D2C8;padding:11px 0;border-bottom:1px solid #2A2520;}
+  nav.mainnav .has-drop .dropdown a:last-child{border-bottom:none;}
+  nav.mainnav .has-drop .dropdown a:active{color:var(--accent);}
+  nav.mainnav .has-drop:not(:last-of-type){border-bottom:1px solid #3A332B;padding-bottom:6px;margin-bottom:6px;}
+  .submenu-toggle{display:flex;align-items:center;justify-content:center;width:44px;height:44px;color:#D9D2C8;}
   .has-drop.open .submenu-toggle .chevron{transform:rotate(180deg);}
   .nav-toggle{display:block;}
   header.site.nav-open .nav-close{display:block;}
   header.site.nav-open{position:fixed;top:0;left:0;right:0;}
   .header-whatsapp-btn{display:none;}
+  .mobile-menu-cta{display:flex;flex-direction:column;gap:12px;margin-top:24px;padding-top:22px;border-top:1px solid #3A332B;}
+  .mobile-menu-cta .ppw-btn-primary{width:100%;justify-content:center;border-radius:10px;padding:14px;}
+  .mobile-menu-call{display:flex;align-items:center;justify-content:center;gap:8px;color:#D9D2C8;font-size:14px;font-weight:600;padding:14px;border:1px solid #4A443C;border-radius:10px;}
+  .mobile-menu-call:hover,.mobile-menu-call:active{color:#F5F2EC;border-color:#6F6659;}
 }
 .split-2{display:grid;gap:40px;}
 .split-2>*{min-width:0;}
@@ -127,14 +144,24 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
 <header class="site" id="site-header"><div class="wrap">
   <a href="/" class="brand"><img src="/images/ppw-logo.png" alt="Pakistan Plastic Works logo">
   <span>Pakistan<br>Plastic&nbsp;Works</span></a>
-  <nav class="mainnav" aria-label="Main"><a href="/" class="ppw-nav-link">Home</a><a href="/about-us/" class="ppw-nav-link">About Us</a><div class="has-drop"><div class="has-drop-row"><a href="/products/" class="ppw-nav-link">Products</a><button type="button" class="submenu-toggle" aria-label="Toggle Products submenu" onclick="this.closest('.has-drop').classList.toggle('open')"><span class="chevron">▾</span></button></div><div class="dropdown"><a href="/products/#radiator-bottles">Radiator Bottles</a><a href="/products/#wiper-bottles">Wiper Bottles</a><a href="/products/#radiator-fans">Radiator Fans</a><a href="/products/#bushes">Bushes</a><a href="/products/#air-pipes">Air Pipes</a><a href="/products/#steel-pipe-bush">Steel Pipe Bush</a><a href="/products/" style="font-weight:600;color:var(--accent);">View All Products →</a></div></div><div class="has-drop"><div class="has-drop-row"><a href="/manufacturing-services/" class="ppw-nav-link">Manufacturing Services</a><button type="button" class="submenu-toggle" aria-label="Toggle Manufacturing Services submenu" onclick="this.closest('.has-drop').classList.toggle('open')"><span class="chevron">▾</span></button></div><div class="dropdown"><a href="/services/blow-molding/">Blow Molding</a><a href="/services/injection-molding/">Small Injection Molding</a><a href="/services/hand-injection-molding/">Hand Injection Molding</a><a href="/services/pipe-cutting/">Pipe Cutting</a></div></div><a href="/outsourcing/" class="ppw-nav-link">Outsourcing</a><a href="/contact-us/" class="ppw-nav-link">Contact Us</a></nav>
+  <nav class="mainnav" aria-label="Main"><a href="/" class="ppw-nav-link">Home</a><a href="/about-us/" class="ppw-nav-link">About Us</a><div class="has-drop"><div class="has-drop-row"><a href="/products/" class="ppw-nav-link">Products</a><button type="button" class="submenu-toggle" aria-label="Toggle Products submenu" aria-expanded="false" onclick="var d=this.closest('.has-drop');d.classList.toggle('open');this.setAttribute('aria-expanded',d.classList.contains('open'));"><span class="chevron">▾</span></button></div><div class="dropdown"><a href="/products/#radiator-bottles">Radiator Bottles</a><a href="/products/#wiper-bottles">Wiper Bottles</a><a href="/products/#radiator-fans">Radiator Fans</a><a href="/products/#bushes">Bushes</a><a href="/products/#air-pipes">Air Pipes</a><a href="/products/#steel-pipe-bush">Steel Pipe Bush</a><a href="/products/" style="font-weight:600;color:var(--accent);">View All Products →</a></div></div><div class="has-drop"><div class="has-drop-row active"><a href="/manufacturing-services/" class="ppw-nav-link active">Manufacturing Services</a><button type="button" class="submenu-toggle" aria-label="Toggle Manufacturing Services submenu" aria-expanded="false" onclick="var d=this.closest('.has-drop');d.classList.toggle('open');this.setAttribute('aria-expanded',d.classList.contains('open'));"><span class="chevron">▾</span></button></div><div class="dropdown"><a href="/services/blow-molding/">Blow Molding</a><a href="/services/injection-molding/">Small Injection Molding</a><a href="/services/hand-injection-molding/">Hand Injection Molding</a><a href="/services/pipe-cutting/">Pipe Cutting</a></div></div><a href="/outsourcing/" class="ppw-nav-link">Outsourcing</a><a href="/contact-us/" class="ppw-nav-link">Contact Us</a><div class="mobile-menu-cta">
+  <a href="https://wa.me/923234121213" class="ppw-btn-primary">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.91-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"></path><path d="M12.04 2C6.58 2 2.13 6.42 2.13 11.88c0 1.75.46 3.39 1.26 4.82L2 22l5.44-1.42a9.9 9.9 0 0 0 4.6 1.14h.01c5.46 0 9.91-4.42 9.91-9.88C21.96 6.42 17.5 2 12.04 2zm0 17.86h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.14 8.14 0 0 1-1.27-4.32c0-4.5 3.68-8.17 8.23-8.17 2.2 0 4.26.86 5.82 2.41a8.1 8.1 0 0 1 2.4 5.76c0 4.5-3.68 8.18-8.22 8.18z"></path></svg>
+    <span>WhatsApp Us</span>
+  </a>
+  <a href="tel:+923234121213" class="mobile-menu-call">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.2.2 2.4.6 3.6.1.4 0 .8-.2 1l-2.3 2.2z"></path></svg>
+    <span>Call 0323 4121213</span>
+  </a>
+</div></nav>
   <a href="https://wa.me/923234121213" class="ppw-btn-primary header-whatsapp-btn">
     <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.65.07-.3-.15-1.26-.46-2.4-1.48-.89-.79-1.48-1.76-1.66-2.06-.17-.3-.02-.46.13-.6.13-.13.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.6-.91-2.2-.24-.57-.49-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.47 0 1.46 1.07 2.87 1.22 3.07.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.69.63.71.22 1.36.19 1.87.12.57-.09 1.76-.72 2.01-1.41.25-.7.25-1.29.17-1.41-.07-.12-.27-.2-.57-.35z"></path><path d="M12.04 2C6.58 2 2.13 6.42 2.13 11.88c0 1.75.46 3.39 1.26 4.82L2 22l5.44-1.42a9.9 9.9 0 0 0 4.6 1.14h.01c5.46 0 9.91-4.42 9.91-9.88C21.96 6.42 17.5 2 12.04 2zm0 17.86h-.01a8.2 8.2 0 0 1-4.18-1.15l-.3-.18-3.1.81.83-3.03-.2-.31a8.14 8.14 0 0 1-1.27-4.32c0-4.5 3.68-8.17 8.23-8.17 2.2 0 4.26.86 5.82 2.41a8.1 8.1 0 0 1 2.4 5.76c0 4.5-3.68 8.18-8.22 8.18z"></path></svg>
     <span>WhatsApp Us</span>
   </a>
-  <button type="button" class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('site-header').classList.add('nav-open')"><span></span><span></span><span></span></button>
-  <button type="button" class="nav-close" aria-label="Close menu" onclick="document.getElementById('site-header').classList.remove('nav-open')">&times;</button>
+  <button type="button" class="nav-toggle" aria-label="Open menu" onclick="document.getElementById('site-header').classList.add('nav-open');document.documentElement.classList.add('nav-locked')"><span></span><span></span><span></span></button>
+  <button type="button" class="nav-close" aria-label="Close menu" onclick="document.getElementById('site-header').classList.remove('nav-open');document.documentElement.classList.remove('nav-locked')">&times;</button>
 </div></header>
+<script>document.addEventListener('keydown',function(e){if(e.key==='Escape'){var h=document.getElementById('site-header');if(h&&h.classList.contains('nav-open')){h.classList.remove('nav-open');document.documentElement.classList.remove('nav-locked');}}});</script>
 
 
 <div class="breadcrumb"><div class="wrap"><a href="/">Home</a> / <span style="color:#fff;">Manufacturing Services</span></div></div>
