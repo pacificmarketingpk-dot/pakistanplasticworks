@@ -63,8 +63,10 @@ nav.mainnav .dropdown a:hover{background:var(--bg-alt);color:var(--accent);}
 @media (max-width:860px){.split-2{grid-template-columns:1fr!important;}}
 .hero{background:var(--dark);padding:56px 24px 64px;}
 .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(184,67,30,.18);color:#f5f2ec;border:1px solid rgba(184,67,30,.4);border-radius:999px;padding:6px 14px;font-size:12px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;}
-.breadcrumb{font-size:13px;color:var(--muted);padding:16px 24px 0;}
-.breadcrumb a{color:var(--muted);}
+.breadcrumb{font-size:13px;background:#000;}
+.breadcrumb .wrap{padding:14px 24px;}
+.breadcrumb, .breadcrumb span{color:#fff;}
+.breadcrumb a{color:#fff;}
 .breadcrumb a:hover{color:var(--accent);}
 section{padding:56px 24px;}
 .section-head{max-width:680px;margin:0 auto 36px;text-align:center;}
@@ -116,7 +118,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
 </div></header>
 
 
-<div class="breadcrumb"><a href="/">Home</a> / <a href="/manufacturing-services/">Manufacturing Services</a> / <span style="color:var(--ink);">Blow Molding</span></div>
+<div class="breadcrumb"><div class="wrap"><a href="/">Home</a> / <a href="/manufacturing-services/">Manufacturing Services</a> / <span style="color:#fff;">Blow Molding</span></div></div>
 <section class="hero" style="padding:40px 24px 48px;">
   <div class="wrap"><h1 style="color:#F5F2EC;font-size:32px;">Blow Molding</h1></div>
 </section>
