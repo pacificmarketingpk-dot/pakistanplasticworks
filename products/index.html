@@ -80,6 +80,14 @@ section{padding:56px 24px;}
 .ph{aspect-ratio:4/3;background:var(--green);display:flex;align-items:center;justify-content:center;overflow:hidden;color:#fff;}
 .ph.placeholder{background:repeating-linear-gradient(45deg,#0B4A2A,#0B4A2A 10px,#0e5a33 10px,#0e5a33 20px);position:relative;}
 .ph.placeholder .ph-label{position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,.55);color:#fff;font-size:11px;text-align:center;padding:5px 6px;font-weight:600;letter-spacing:.03em;}
+.cat-details{margin:40px 0 0;border-bottom:1px solid var(--line-2);padding-bottom:28px;}
+.cat-details summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:10px;padding:4px 0 14px;font-family:'Oswald',sans-serif;font-weight:600;font-size:20px;color:var(--green);text-transform:uppercase;letter-spacing:.02em;}
+.cat-details summary::-webkit-details-marker{display:none;}
+.cat-details summary::marker{content:'';}
+.cat-details summary:focus-visible{outline:2px solid var(--accent);outline-offset:4px;}
+.cat-details summary .cat-count{background:var(--bg-alt);border:1px solid var(--line-2);color:var(--muted);font-family:Inter,sans-serif;font-size:12px;font-weight:600;text-transform:none;letter-spacing:0;border-radius:999px;padding:2px 10px;}
+.cat-details summary .cat-chevron{margin-left:auto;color:var(--muted);font-size:14px;transition:transform .18s ease;}
+.cat-details[open] summary .cat-chevron{transform:rotate(180deg);}
 .faq-item{background:#fff;border:1px solid var(--line-2);border-radius:10px;padding:18px 22px;margin-bottom:14px;}
 .faq-item h3{font-size:15px;margin:0 0 8px;text-transform:none;letter-spacing:0;}
 .faq-item p{font-size:14px;color:var(--muted);line-height:1.6;margin:0;}
@@ -129,7 +137,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     <div class="grid grid-4"><a href="#" class="ppw-card card-pad" style="text-align:center;display:block;" data-filter-vehicle="Suzuki Mehran">Suzuki Mehran</a><a href="#" class="ppw-card card-pad" style="text-align:center;display:block;" data-filter-vehicle="Suzuki Cultus">Suzuki Cultus</a><a href="#" class="ppw-card card-pad" style="text-align:center;display:block;" data-filter-vehicle="Suzuki Pickup">Suzuki Pickup</a><a href="#" class="ppw-card card-pad" style="text-align:center;display:block;" data-filter-vehicle="Suzuki Van">Suzuki Van</a></div>
     <h2 style="font-size:18px;margin:32px 0 14px;">Browse by Category</h2>
     <div class="grid grid-4" style="margin-bottom:8px;"><a href="#radiator-bottles" class="ppw-card card-pad" style="text-align:center;display:block;">Radiator Bottles</a><a href="#wiper-bottles" class="ppw-card card-pad" style="text-align:center;display:block;">Wiper Bottles</a><a href="#bushes" class="ppw-card card-pad" style="text-align:center;display:block;">Bushes</a><a href="#radiator-fans" class="ppw-card card-pad" style="text-align:center;display:block;">Radiator Fans</a><a href="#air-pipes" class="ppw-card card-pad" style="text-align:center;display:block;">Air Pipes</a><a href="#steel-pipe-bush" class="ppw-card card-pad" style="text-align:center;display:block;">Steel Pipe Bush</a></div>
-    <h2 id="radiator-bottles" style="font-size:20px;color:var(--green);margin:40px 0 18px;">Radiator Bottles</h2><div class="grid grid-3"><a href="/products/suzuki-mehran-radiator-bottle/" class="ppw-card" style="overflow:hidden;display:block;">
+    <details class="cat-details" id="radiator-bottles" open><summary><span>Radiator Bottles</span><span class="cat-count">3</span><span class="cat-chevron">▾</span></summary><div class="grid grid-3"><a href="/products/suzuki-mehran-radiator-bottle/" class="ppw-card" style="overflow:hidden;display:block;">
   <div class="ph placeholder"><span style="font-size:11px;opacity:.01;">placeholder</span><div class="ph-label">Product photo to be added</div></div>
   <div class="card-pad">
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Mehran Radiator Bottle</h3>
@@ -147,7 +155,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Pickup Radiator Bottle</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.5;margin:0;">A replacement radiator (coolant) reservoir bottle made for the Suzuki Pickup (Ravi), manufactured in-house at our Lahore facility.</p>
   </div>
-</a></div><h2 id="wiper-bottles" style="font-size:20px;color:var(--green);margin:40px 0 18px;">Wiper Bottles</h2><div class="grid grid-3"><a href="/products/suzuki-mehran-wiper-bottle/" class="ppw-card" style="overflow:hidden;display:block;">
+</a></div></details><details class="cat-details" id="wiper-bottles" open><summary><span>Wiper Bottles</span><span class="cat-count">2</span><span class="cat-chevron">▾</span></summary><div class="grid grid-3"><a href="/products/suzuki-mehran-wiper-bottle/" class="ppw-card" style="overflow:hidden;display:block;">
   <div class="ph"><img src="/images/f7d2aa2ab8f6a96a2304b329103775e8.png" alt="Suzuki Mehran Wiper Bottle — Pakistan Plastic Works" style="width:60%;height:auto;object-fit:contain;"></div>
   <div class="card-pad">
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Mehran Wiper Bottle</h3>
@@ -159,7 +167,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Pickup Wiper Bottle</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.5;margin:0;">A replacement windshield washer fluid reservoir for the Suzuki Pickup, manufactured in-house at our Lahore facility.</p>
   </div>
-</a></div><h2 id="bushes" style="font-size:20px;color:var(--green);margin:40px 0 18px;">Bushes</h2><div class="grid grid-3"><a href="/products/plastic-center-bush/" class="ppw-card" style="overflow:hidden;display:block;">
+</a></div></details><details class="cat-details" id="bushes" open><summary><span>Bushes</span><span class="cat-count">4</span><span class="cat-chevron">▾</span></summary><div class="grid grid-3"><a href="/products/plastic-center-bush/" class="ppw-card" style="overflow:hidden;display:block;">
   <div class="ph"><img src="/images/2c4a61c0dc4b8df36a8774b8f091cc2e.png" alt="Plastic Center Bush — Pakistan Plastic Works" style="width:60%;height:auto;object-fit:contain;"></div>
   <div class="card-pad">
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Plastic Center Bush</h3>
@@ -183,7 +191,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Plastic Center Bush — Triple Bearing</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.5;margin:0;">A plastic center bush / dipstick guide bush in the triple-bearing configuration, manufactured in-house at our Lahore facility.</p>
   </div>
-</a></div><h2 id="radiator-fans" style="font-size:20px;color:var(--green);margin:40px 0 18px;">Radiator Fans</h2><div class="grid grid-3"><a href="/products/suzuki-mehran-radiator-fan/" class="ppw-card" style="overflow:hidden;display:block;">
+</a></div></details><details class="cat-details" id="radiator-fans" open><summary><span>Radiator Fans</span><span class="cat-count">3</span><span class="cat-chevron">▾</span></summary><div class="grid grid-3"><a href="/products/suzuki-mehran-radiator-fan/" class="ppw-card" style="overflow:hidden;display:block;">
   <div class="ph"><img src="/images/c255fd3ec552ed1e17268874f4dc75ab.png" alt="Suzuki Mehran Radiator Fan — Pakistan Plastic Works" style="width:60%;height:auto;object-fit:contain;"></div>
   <div class="card-pad">
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Mehran Radiator Fan</h3>
@@ -201,7 +209,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Pickup Radiator Fan</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.5;margin:0;">A replacement radiator cooling fan made for the Suzuki Pickup, manufactured in-house at our Lahore facility.</p>
   </div>
-</a></div><h2 id="air-pipes" style="font-size:20px;color:var(--green);margin:40px 0 18px;">Air Pipes</h2><div class="grid grid-3"><a href="/products/suzuki-van-air-pipe/" class="ppw-card" style="overflow:hidden;display:block;">
+</a></div></details><details class="cat-details" id="air-pipes" open><summary><span>Air Pipes</span><span class="cat-count">2</span><span class="cat-chevron">▾</span></summary><div class="grid grid-3"><a href="/products/suzuki-van-air-pipe/" class="ppw-card" style="overflow:hidden;display:block;">
   <div class="ph placeholder"><span style="font-size:11px;opacity:.01;">placeholder</span><div class="ph-label">Product photo to be added</div></div>
   <div class="card-pad">
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Van Air Pipe</h3>
@@ -213,13 +221,13 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Suzuki Pickup Air Pipe</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.5;margin:0;">A molded air intake/hose pipe for the Suzuki Pickup, manufactured in-house at our Lahore facility.</p>
   </div>
-</a></div><h2 id="steel-pipe-bush" style="font-size:20px;color:var(--green);margin:40px 0 18px;">Steel Pipe Bush</h2><div class="grid grid-3"><a href="/products/steel-pipe-bush/" class="ppw-card" style="overflow:hidden;display:block;">
+</a></div></details><details class="cat-details" id="steel-pipe-bush" open><summary><span>Steel Pipe Bush</span><span class="cat-count">1</span><span class="cat-chevron">▾</span></summary><div class="grid grid-3"><a href="/products/steel-pipe-bush/" class="ppw-card" style="overflow:hidden;display:block;">
   <div class="ph placeholder"><span style="font-size:11px;opacity:.01;">placeholder</span><div class="ph-label">Product photo to be added</div></div>
   <div class="card-pad">
     <h3 style="font-size:16px;margin:0 0 6px;text-transform:none;letter-spacing:0;">Steel Pipe Bush</h3>
     <p style="font-size:13px;color:var(--muted);line-height:1.5;margin:0;">A steel pipe bush component produced using our pipe-cutting and bushing process at our Lahore facility.</p>
   </div>
-</a></div>
+</a></div></details>
   </div>
 </section>
 
