@@ -29,9 +29,9 @@ img{max-width:100%;display:block;}
 .ppw-link:hover{color:#8F3417;text-decoration:underline;}
 .ppw-nav-link:hover{color:#F5F2EC;}
 .ppw-btn-primary{background:var(--green);color:#fff;font-weight:600;font-size:14px;padding:12px 22px;border-radius:6px;display:inline-flex;align-items:center;gap:8px;white-space:nowrap;border:none;cursor:pointer;}
-.ppw-btn-primary:hover{background:#09391f;}
-.ppw-btn-ghost{background:transparent;color:#F5F2EC;font-weight:600;font-size:14px;padding:12px 22px;border-radius:6px;border:1px solid #4A443C;display:inline-block;}
-.ppw-btn-ghost:hover{background:rgba(255,255,255,.1);}
+.ppw-btn-primary:hover{background:var(--green);color:#fff;}
+.ppw-btn-ghost{background:var(--green);color:#fff;font-weight:600;font-size:14px;padding:12px 22px;border-radius:6px;border:1px solid var(--green);display:inline-block;}
+.ppw-btn-ghost:hover{background:var(--green);color:#fff;}
 .ppw-card{background:#fff;border:1px solid var(--line);border-radius:10px;transition:box-shadow .15s ease,transform .15s ease;}
 .ppw-card:hover{box-shadow:0 12px 28px rgba(32,28,24,.12);transform:translateY(-2px);}
 .topbar{background:#1C1814;color:#D9D2C8;font-size:13px;}
@@ -188,7 +188,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
       <div><label for="cphone">Phone / WhatsApp</label><input id="cphone" name="phone" type="tel" required></div>
       <div><label for="cproduct">Product &amp; Quantity</label><input id="cproduct" name="product" type="text"></div>
       <div><label for="cmessage">Message</label><textarea id="cmessage" name="message" rows="4"></textarea></div>
-      <button type="submit" class="ppw-btn-primary" style="background:var(--accent);justify-content:center;">Send Inquiry</button>
+      <button type="submit" class="ppw-btn-primary" style="background:var(--green);justify-content:center;">Send Inquiry</button>
       <p style="font-size:12px;color:#6F6659;margin:0;text-transform:none;">This form is not yet connected to a submission backend — see the deployment notes. For the fastest reply, message us directly on WhatsApp.</p>
     </form>
   </div>
