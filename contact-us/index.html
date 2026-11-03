@@ -197,7 +197,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
         <div><a href="https://www.facebook.com/PakistanPlasticWorks" class="ppw-link">facebook.com/PakistanPlasticWorks</a></div>
       </div>
     </div>
-    <form class="inquiry" action="#" method="post">
+    <form class="inquiry" id="contact-form" data-whatsapp-heading="New Inquiry">
       <h2 style="color:#F5F2EC;font-size:18px;margin:0;text-transform:none;">Send an Inquiry</h2>
       <div><label for="cname">Your Name</label><input id="cname" name="name" type="text" required></div>
       <div><label for="cshop">Shop / Company Name</label><input id="cshop" name="shop" type="text"></div>
@@ -205,7 +205,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
       <div><label for="cproduct">Product &amp; Quantity</label><input id="cproduct" name="product" type="text"></div>
       <div><label for="cmessage">Message</label><textarea id="cmessage" name="message" rows="4"></textarea></div>
       <button type="submit" class="ppw-btn-primary" style="background:var(--green);justify-content:center;">Send Inquiry</button>
-      <p style="font-size:12px;color:#6F6659;margin:0;text-transform:none;">This form is not yet connected to a submission backend — see the deployment notes. For the fastest reply, message us directly on WhatsApp.</p>
+      <p style="font-size:12px;color:#6F6659;margin:0;text-transform:none;">Submitting opens WhatsApp with your details pre-filled — just tap send to deliver your inquiry to us directly.</p>
     </form>
   </div>
 </section>
@@ -258,8 +258,17 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     }
   });
   document.querySelectorAll('form.inquiry').forEach(function(f){
-    f.addEventListener('submit', function(){
+    f.addEventListener('submit', function(e){
       track('form_submit', { form_id: f.id || '', page_path: location.pathname });
+      e.preventDefault();
+      var lines = [f.getAttribute('data-whatsapp-heading') || 'New Inquiry'];
+      f.querySelectorAll('[name]').forEach(function(el){
+        var val = (el.value || '').trim();
+        if (!val) return;
+        var label = f.querySelector('label[for="' + el.id + '"]');
+        lines.push((label ? label.textContent.trim() : el.name) + ': ' + val);
+      });
+      window.location.href = 'https://wa.me/923234121213?text=' + encodeURIComponent(lines.join('\n'));
     });
   });
 })();

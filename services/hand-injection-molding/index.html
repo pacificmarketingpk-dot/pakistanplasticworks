@@ -258,8 +258,17 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     }
   });
   document.querySelectorAll('form.inquiry').forEach(function(f){
-    f.addEventListener('submit', function(){
+    f.addEventListener('submit', function(e){
       track('form_submit', { form_id: f.id || '', page_path: location.pathname });
+      e.preventDefault();
+      var lines = [f.getAttribute('data-whatsapp-heading') || 'New Inquiry'];
+      f.querySelectorAll('[name]').forEach(function(el){
+        var val = (el.value || '').trim();
+        if (!val) return;
+        var label = f.querySelector('label[for="' + el.id + '"]');
+        lines.push((label ? label.textContent.trim() : el.name) + ': ' + val);
+      });
+      window.location.href = 'https://wa.me/923234121213?text=' + encodeURIComponent(lines.join('\n'));
     });
   });
 })();

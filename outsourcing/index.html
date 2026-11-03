@@ -209,7 +209,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
       <p style="font-size:15px;color:var(--ink-soft);line-height:1.8;text-transform:none;">Send us your project details using the form, or message us directly on WhatsApp. We'll follow up to discuss your requirements, process, and quantities.</p>
       <a href="https://wa.me/923234121213" class="ppw-btn-primary" style="background:var(--green);margin-top:10px;">Contact Us on WhatsApp</a>
     </div>
-    <form class="inquiry" action="#" method="post">
+    <form class="inquiry" id="outsourcing-form" data-whatsapp-heading="New Outsourcing Inquiry">
       <h2 style="color:#F5F2EC;font-size:18px;margin:0;text-transform:none;">Outsourcing Inquiry</h2>
       <div><label for="name">Name</label><input id="name" name="name" type="text" required></div>
       <div><label for="company">Company Name</label><input id="company" name="company" type="text"></div>
@@ -224,7 +224,7 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
       <div><label for="qty">Estimated Quantity (optional)</label><input id="qty" name="qty" type="text"></div>
       <div><label for="desc">Project Description</label><textarea id="desc" name="desc" rows="4" required></textarea></div>
       <button type="submit" class="ppw-btn-primary" style="background:var(--green);justify-content:center;">Submit Inquiry</button>
-      <p style="font-size:12px;color:#6F6659;margin:0;text-transform:none;">This form is not yet connected to a submission backend — see the deployment notes. For now, please also message us on WhatsApp so your inquiry isn't missed.</p>
+      <p style="font-size:12px;color:#6F6659;margin:0;text-transform:none;">Submitting opens WhatsApp with your details pre-filled — just tap send to deliver your inquiry to us directly.</p>
     </form>
   </div>
 </section>
@@ -277,8 +277,17 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
     }
   });
   document.querySelectorAll('form.inquiry').forEach(function(f){
-    f.addEventListener('submit', function(){
+    f.addEventListener('submit', function(e){
       track('form_submit', { form_id: f.id || '', page_path: location.pathname });
+      e.preventDefault();
+      var lines = [f.getAttribute('data-whatsapp-heading') || 'New Inquiry'];
+      f.querySelectorAll('[name]').forEach(function(el){
+        var val = (el.value || '').trim();
+        if (!val) return;
+        var label = f.querySelector('label[for="' + el.id + '"]');
+        lines.push((label ? label.textContent.trim() : el.name) + ': ' + val);
+      });
+      window.location.href = 'https://wa.me/923234121213?text=' + encodeURIComponent(lines.join('\n'));
     });
   });
 })();
