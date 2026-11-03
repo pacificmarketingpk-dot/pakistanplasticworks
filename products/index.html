@@ -255,5 +255,32 @@ footer.site .bottom{border-top:1px solid #2A2520;padding-top:18px;display:flex;f
   </div>
 </div></footer>
 
+<script>
+(function(){
+  function track(name, params){
+    if (window.gtag) { gtag('event', name, params || {}); }
+  }
+  document.addEventListener('click', function(e){
+    var a = e.target.closest('a');
+    if (!a) return;
+    var href = a.getAttribute('href') || '';
+    var params = { link_text: (a.textContent || '').trim(), link_url: href, page_path: location.pathname };
+    if (href.indexOf('wa.me/') > -1) {
+      track('whatsapp_click', params);
+    } else if (href.indexOf('tel:') === 0) {
+      track('phone_click', params);
+    } else if (href.indexOf('mailto:') === 0) {
+      track('email_click', params);
+    } else if (href.indexOf('google.com/maps') > -1) {
+      track('maps_click', params);
+    }
+  });
+  document.querySelectorAll('form.inquiry').forEach(function(f){
+    f.addEventListener('submit', function(){
+      track('form_submit', { form_id: f.id || '', page_path: location.pathname });
+    });
+  });
+})();
+</script>
 </body>
 </html>
